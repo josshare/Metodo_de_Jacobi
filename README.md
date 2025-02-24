@@ -3,3 +3,5 @@ Ejemplo de Metodo de Jacobi
 
 
 ![Codigo](code_jacobi.png)
+
+![Solucion](solved_jacobi.png)
