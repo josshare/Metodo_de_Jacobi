@@ -1,29 +1,24 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        // Define the system parameters
+        // Given system: Ax = b
         double[][] A = {
-                {4, 1, 1},
-                {1, 3, 1},
-                {1, 1, 4}
+                {10, 2, -3},
+                {4, 7, -1},
+                {-2, 1, 4}
         };
-        double[] b = {5, 5, 6};
-        double[] xInicial = {0, 0, 0};
-        double tolerancia = 1e-6;
-        int maxIteraciones = 100;
-        int numHilos = 4;
+        double[] b = {1, -1, 5};
+        double[] x0 = {0, 0, 0}; // Initial guess
+        double tol = 1e-6;
+        int maxIter = 100;
 
-        // Create and solve using JacobiConcurrente
-        JacobiConcurrente jacobi = new JacobiConcurrente(A, b, xInicial, tolerancia, maxIteraciones, numHilos);
-        double[] solucion = jacobi.resolver();
+        double[] solution = JacobiMethod.jacobi(A, b, x0, tol, maxIter);
 
-        // Print the solution
-        if (solucion != null) {
-            System.out.println("Solución encontrada:");
-            for (int i = 0; i < solucion.length; i++) {
-                System.out.println("x[" + i + "] = " + solucion[i]);
-            }
+        if (solution != null) {
+            System.out.println("Solution: " + Arrays.toString(solution));
         } else {
-            System.out.println("No se pudo encontrar una solución.");
+            System.out.println("Method did not converge within the maximum iterations.");
         }
     }
 }
