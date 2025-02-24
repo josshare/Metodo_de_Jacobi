@@ -8,6 +8,7 @@ public class JacobiConcurrente {
     private double[] b; // Vector de términos independientes
     private double[] x; // Solución actual
     private double[] xNuevo; // Solución en la siguiente iteración
+    private int iteraciones; // Número actual de iteraciones realizadas
     private int n; // Dimensión del sistema
     private double tolerancia; // Tolerancia para la convergencia
     private int maxIteraciones; // Número máximo de iteraciones
@@ -42,7 +43,9 @@ public class JacobiConcurrente {
         }
 
         // Iterar hasta la convergencia o alcanzar el número máximo de iteraciones
+        iteraciones = 0;
         for (int iteracion = 0; iteracion < maxIteraciones && !converge; iteracion++) {
+            iteraciones = iteracion + 1;
             try {
                 // Esperar a que todos los hilos terminen de calcular sus nuevas estimaciones
                 barrera.await();
